@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.example.smartlock"
+        minSdkVersion 29
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'org.jetbrains:annotations:15.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //implementation 'com.google.android.gms:play-services:12.0.1'
+    implementation 'com.google.api-client:google-api-client:1.30.3'
+    implementation 'com.google.apis:google-api-services-cloudiot:v1-rev20191203-1.30.3'
+    implementation 'com.google.auth:google-auth-library-oauth2-http:0.26.0'
+    implementation 'com.google.pubsub:cloud-pubsub-client:0.2.1-EXPERIMENTAL'
+    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
+    implementation 'org.eclipse.paho:android-service-parent:1.0.2'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    //implementation(project(':org.eclipse.paho.android.service')){
+        //exclude module: "org.eclipse.paho.client.mqttv3"
+      //  transitive=true
+    //}
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/io.netty.versions.properties'
+        exclude("META-INF/*.kotlin_module")
+    }
+}

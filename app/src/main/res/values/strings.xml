@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Smartlock</string>
+    <string name="openButtonText">Open</string>
+</resources>
