@@ -1,57 +1,23 @@
 package com.example.smartlock;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import android.content.Context;
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-//import com.google.api.client.util.Lists;
 import com.google.api.services.cloudiot.v1.CloudIot;
-import com.google.api.services.cloudiot.v1.CloudIotScopes;
 import com.google.api.services.cloudiot.v1.model.SendCommandToDeviceRequest;
 import com.google.auth.http.HttpCredentialsAdapter;
-import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.common.collect.Lists;
 
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 import java.nio.charset.StandardCharsets;
-import java.security.GeneralSecurityException;
 import java.util.Base64;
-import java.util.Date;
-
-//import org.eclipse.paho.android.sample.activity.Connection;
-import org.eclipse.paho.android.service.MqttAndroidClient;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-
-//import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-
 
 public class SendOpenCommand extends Thread {
         public static String responseString;
@@ -69,19 +35,7 @@ public class SendOpenCommand extends Thread {
                 this.data = data;
         }
 
-
-
         public void sendOpenCommand() throws IOException {
-
-                //System.setProperty("GOOGLE_APPLICATION_CREDENTIALS", "com.example.smartlock.vocal-gist-315804-d48cf3f9e13e.json");
-                //Date expiryDate = new Date(10000000);
-                //AccessToken accessToken = new AccessToken("AIzaSyCaSatwfe8kg0xzH2C0rDgJBBAnL5uyLOs", expiryDate);
-                //GoogleCredentials credential = GoogleCredentials.create(accessToken);
-//                GoogleCredentials credential = GoogleCredentials.getApplicationDefault().createScoped(CloudIotScopes.all());
-
-
-                //FileInputStream credentialJSONFile = new FileInputStream("vocal-gist-315804-d48cf3f9e13e.json");
-
                 String credentialJSONFileData = "{\n" +
                         "  \"type\": \"service_account\",\n" +
                         "  \"project_id\": \"vocal-gist-315804\",\n" +
@@ -102,7 +56,6 @@ public class SendOpenCommand extends Thread {
 
                 JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
                 HttpRequestInitializer init = new HttpCredentialsAdapter(credential);
-                //HTTP_TRANSPORT = new com.google.api.client.http.javanet.NetHttpTransport();
                 final CloudIot service =
                         new CloudIot.Builder(new com.google.api.client.http.javanet.NetHttpTransport(), jsonFactory, init)
                                 .setApplicationName("Smartlock")
@@ -132,8 +85,6 @@ public class SendOpenCommand extends Thread {
                         .execute();
 
                 Log.d(TAG, "sendOpenCommand: sent");
-
-
         }
 
         @Override
@@ -146,66 +97,4 @@ public class SendOpenCommand extends Thread {
                 }
 
         }
-
-        /*                RequestQueue requestQueue = Volley.newRequestQueue(context);
-
-                String projectId = "vocal-gist-315804-d48cf3f9e13e";
-                String cloudRegion = "us-central1";
-                String registryName = "registry2";
-                String deviceId = "lock123";
-
-                JSONObject jsonBody = new JSONObject();
-                String jsonBodyString = jsonBody.toString();
-
-                String APIKey = "AIzaSyCaSatwfe8kg0xzH2C0rDgJBBAnL5uyLOs";
-
-                String devicePath = String.format("projects/%s/locations/%s/registries/%s/devices/%s:sendCommandToDevice", projectId, cloudRegion, registryName, deviceId);
-                jsonBody.put("name", devicePath);
-                jsonBody.put("binary_data", "Hello");
-
-                String url = String.format("https://cloudiot.googleapis.com/v1/%s:sendCommandToDevice?key=%s", devicePath, APIKey);
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,  new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                                Log.i("VOLLEY", response);
-                                responseString = response;
-                        }
-                }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                                responseString = error.toString();
-                                Log.e("VOLLEY", error.toString());
-
-
-                        }
-                }) {
-                        @Override
-                        public String getBodyContentType() {
-                                return "application/json; charset=utf-8";
-                        }
-
-                        @Override
-                        public byte[] getBody() throws AuthFailureError {
-                                try {
-                                        responseString = jsonBodyString.toString();
-                                        return jsonBodyString.getBytes("utf-8");
-                                } catch (UnsupportedEncodingException uee) {
-                                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", jsonBodyString, "utf-8");
-                                        return null;
-                                }
-                        }
-
-                        @Override
-                        protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                                String responseString = "";
-                                if (response != null) {
-                                        responseString = String.valueOf(response.statusCode);
-                                        // can get more details such as response.headers
-                                }
-                                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-                        }
-                };
-
-                requestQueue.add(stringRequest);*/
 }
