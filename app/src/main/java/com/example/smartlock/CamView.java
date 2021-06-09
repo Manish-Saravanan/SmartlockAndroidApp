@@ -17,14 +17,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONException;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+import static com.example.smartlock.ReceiveNotification.subscribeToTopic;
 
 public class CamView extends AppCompatActivity {
 
@@ -51,10 +55,20 @@ public class CamView extends AppCompatActivity {
             Log.d(TAG, "onCreate: Button was pressed.");
             SendOpenCommand sendCommand = new SendOpenCommand("lock123", "vocal-gist-315804", "us-central1", "registry-2", "OpenDoor");
             sendCommand.start();
-            });
+        });
 
         Button ignoreButton = findViewById(R.id.ignoreButton);
-        ignoreButton.setOnClickListener(v -> finish());
+        ignoreButton.setOnClickListener(v -> {
+            try {
+                subscribeToTopic("LockRequest",
+                        "phone1",
+                        "registry-2",
+                        "us-central1",
+                        null);
+            } catch (InvalidKeySpecException | MqttException | NoSuchAlgorithmException | InterruptedException | IOException e) {
+                e.printStackTrace();
+            }
+        });
 
 
     }

@@ -34,17 +34,7 @@ public class ReceiveNotification extends Worker {
             throws InvalidKeySpecException, MqttException, NoSuchAlgorithmException, InterruptedException, IOException {
         Log.d(TAG, "subscribeToTopic: subscribeToTopic started.");
         String data = TopicName + deviceId + registryId;
-        MQTTLib.mqttDeviceDemo("vocal-gist-315804",
-                cloudRegion,
-                registryId,
-                deviceId,
-                "RS256",
-                "mqtt.googleapis.com",
-                (short) 8883,
-                "message",
-                120,
-                context,
-                TopicName);
+        MQTTLib.listen(context);
         Log.d(TAG, "subscribeToTopic: " + data);
     }
 
