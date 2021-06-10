@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.api.grpc:proto-google-cloud-pubsub-v1:1.95.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-pubsub-v1/1.95.0/ee579044044086289c0bd209ee01efa1cab6f38e/proto-google-cloud-pubsub-v1-1.95.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-pubsub-v1/1.95.0/7e1cb9cd7f8b64803c46b43991c8755735669862/proto-google-cloud-pubsub-v1-1.95.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api.grpc/proto-google-cloud-pubsub-v1/1.95.0/a389e2010c9aa393bc40c668854a51fc98fbd7cd/proto-google-cloud-pubsub-v1-1.95.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

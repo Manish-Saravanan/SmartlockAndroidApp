@@ -4,12 +4,14 @@ import android.util.Log;
 
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.json.gson.GsonFactory;
+//import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.services.cloudiot.v1.CloudIot;
 import com.google.api.services.cloudiot.v1.model.SendCommandToDeviceRequest;
 import com.google.auth.http.HttpCredentialsAdapter;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.common.collect.Lists;
+//import com.google.gson.Gson;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -54,7 +56,7 @@ public class SendOpenCommand extends Thread {
 
                 Log.d(TAG, "sendOpenCommand: " + credential);
 
-                JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+                JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
                 HttpRequestInitializer init = new HttpCredentialsAdapter(credential);
                 final CloudIot service =
                         new CloudIot.Builder(new com.google.api.client.http.javanet.NetHttpTransport(), jsonFactory, init)

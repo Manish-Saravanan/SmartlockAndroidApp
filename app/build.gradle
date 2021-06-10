@@ -33,23 +33,34 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'org.jetbrains:annotations:21.0.1'
+    implementation 'androidx.preference:preference:1.1.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //implementation 'com.google.android.gms:play-services:12.0.1'
-    implementation 'com.google.api-client:google-api-client:1.30.3'
-    implementation 'com.google.apis:google-api-services-cloudiot:v1-rev20191203-1.30.3'
+    implementation 'com.google.api-client:google-api-client:1.31.5'
+    implementation 'com.google.apis:google-api-services-cloudiot:v1-rev20210323-1.31.0'
     implementation 'com.google.auth:google-auth-library-oauth2-http:0.26.0'
-    implementation 'com.google.pubsub:cloud-pubsub-client:0.2.1-EXPERIMENTAL'
-    implementation 'com.android.volley:volley:1.2.0'
-    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
+    //implementation 'com.google.pubsub:cloud-pubsub-client:0.2.1-EXPERIMENTAL'
+    //implementation 'com.android.volley:volley:1.2.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
     implementation 'org.eclipse.paho:android-service-parent:1.0.2'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
-    implementation 'androidx.work:work-runtime:2.6.0-beta01'
+    implementation 'androidx.work:work-runtime:2.7.0-alpha04'
+    implementation platform('com.google.cloud:libraries-bom:20.6.0')
+    implementation 'io.grpc:grpc-netty'
+    implementation 'io.netty:netty-tcnative-boringssl-static:2.0.8.Final'
+    implementation 'com.google.cloud:google-cloud-pubsub'
     //implementation 'com.google.api.grpc:grpc-google-pubsub-v1:0.1.1'
-    implementation 'com.google.cloud:google-cloud-pubsub:1.112.0'
+    //implementation 'com.google.cloud:google-cloud-pubsub-spi:1.0.0'
+    //implementation 'com.google.cloud:google-cloud-pubsub:1.113.0'
+    //api enforcedPlatform('com.google.cloud:libraries-bom:20.6.0')
+    implementation "io.grpc:grpc-okhttp:1.26.0"
+    implementation "io.grpc:grpc-protobuf:1.38.0"
+    implementation "io.grpc:grpc-stub:1.38.0"
+
 
 }
 
@@ -66,5 +77,12 @@ android {
         exclude 'META-INF/INDEX.LIST'
         exclude 'META-INF/io.netty.versions.properties'
         exclude("META-INF/*.kotlin_module")
+        exclude 'META-INF/native-image/io.netty/codec-http/native-image.properties'
+        exclude 'META-INF/native-image/io.netty/transport/reflection-config.json'
+        exclude 'META-INF/native-image/io.netty/handler/native-image.properties'
+        exclude 'META-INF/native-image/io.netty/common/native-image.properties'
+        exclude 'META-INF/native-image/io.netty/transport/native-image.properties'
+        exclude 'META-INF/native-image/io.netty/codec-http2/native-image.properties'
+        exclude 'META-INF/native-image/io.netty/buffer/native-image.properties'
     }
 }

@@ -1,34 +1,19 @@
 package com.example.smartlock;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-import androidx.work.WorkRequest;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-//import android.view.View;
 import android.util.Log;
 import android.widget.Button;
-//import android.widget.QuickContactBadge;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.json.JSONException;
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
+import androidx.appcompat.app.AppCompatActivity;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-import static com.example.smartlock.ReceiveNotification.subscribeToTopic;
+
+//import android.view.View;
+//import android.widget.QuickContactBadge;
+//import static com.example.smartlock.ReceiveNotification.subscribeToTopic;
 
 public class CamView extends AppCompatActivity {
 
@@ -42,10 +27,11 @@ public class CamView extends AppCompatActivity {
         //startService(listenerService);
 
 
-        WorkRequest myWorkRequest = OneTimeWorkRequest.from(ReceiveNotification.class);
+
+        //WorkRequest myWorkRequest = OneTimeWorkRequest.from(ReceiveNotification.class);
         //myWorkRequest.
 
-        WorkManager.getInstance(this).enqueue(myWorkRequest);
+        //WorkManager.getInstance(getApplicationContext()).enqueue(myWorkRequest);
 
         createNotificationChannel();
 
@@ -58,19 +44,7 @@ public class CamView extends AppCompatActivity {
         });
 
         Button ignoreButton = findViewById(R.id.ignoreButton);
-        ignoreButton.setOnClickListener(v -> {
-            try {
-                subscribeToTopic("LockRequest",
-                        "phone1",
-                        "registry-2",
-                        "us-central1",
-                        null);
-            } catch (InvalidKeySpecException | MqttException | NoSuchAlgorithmException | InterruptedException | IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-
+        ignoreButton.setOnClickListener(v -> finish());
     }
 
     private void createNotificationChannel() {
