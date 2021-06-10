@@ -3,6 +3,7 @@ package com.example.smartlock;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -35,22 +36,11 @@ public class ListenerService extends Worker {
         super(context, workerParams);
     }
 
-/*
-    public static void subscribeToTopic(String TopicName,
-                                        String deviceId,
-                                        String registryId)
-            throws IOException {
-        Log.d(TAG, "subscribeToTopic: subscribeToTopic started.");
-        String data = TopicName + deviceId + registryId;
-        listen();
-        Log.d(TAG, "subscribeToTopic: " + data);
-    }*/
-
     @Override
     public @NotNull Result doWork() {
         Log.d(TAG, "onStartJob: listener service started.");
         try {
-            listen();
+            listen(getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -58,7 +48,7 @@ public class ListenerService extends Worker {
         return Result.success();
     }
 
-    public static void listen() throws IOException {
+    public static void listen(Context context) throws IOException {
         String projectId = "vocal-gist-315804";
         String subscriptionId = "phone1";
 
@@ -78,10 +68,10 @@ public class ListenerService extends Worker {
         GoogleCredentials credential = GoogleCredentials.fromStream(credentialStream)
                 .createScoped(Lists.newArrayList("https://www.googleapis.com/auth/pubsub"));
 
-        subscribeAsync(projectId, subscriptionId, credential);
+        subscribeAsync(projectId, subscriptionId, credential, context);
     }
 
-    public static void subscribeAsync(String projectId, String subscriptionId, GoogleCredentials credential) {
+    public static void subscribeAsync(String projectId, String subscriptionId, GoogleCredentials credential, Context context) {
         ProjectSubscriptionName subscriptionName =
                 ProjectSubscriptionName.of(projectId, subscriptionId);
 
@@ -92,33 +82,9 @@ public class ListenerService extends Worker {
                     consumer.ack();
                     System.out.println("Id: " + message.getMessageId());
                     System.out.println("Data: " + message.getData().toStringUtf8());
-                    String CHANNEL_ID = "DoorBellChannel";
 
-                    Context context = BootCompleteReceiver.appContext;
-                    //Context con = CamView;
-
-                    Intent intent = new Intent(context, CamView.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-                    NotificationManager notificationManager = (NotificationManager)
-                            context.getSystemService(NOTIFICATION_SERVICE);
-
-
-
-                    Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID)
-                            .setSmallIcon(R.drawable.ic_launcher_foreground)
-                            .setContentTitle("Doorbell pressed.")
-                            .setContentText(message.toString())
-                            .setContentIntent(pendingIntent)
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT).build();
-
-                    Log.d(TAG, "subscribeAsync: After notification build...");
-
-                    notificationManager.notify(Integer.parseInt(message.getMessageId()), notification);
-
-                    //notificationManager.notify();
-
+                    Intent intent = new Intent(context, Notifier.class);
+                    context.startService(intent);
                     // Handle incoming message, then ack the received message.
                     System.out.println("Id: " + message.getMessageId());
                     System.out.println("Data: " + message.getData().toStringUtf8());

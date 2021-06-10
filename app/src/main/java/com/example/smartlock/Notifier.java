@@ -2,35 +2,28 @@ package com.example.smartlock;
 
 import android.app.Notification;
 import android.app.PendingIntent;
-import android.content.Context;
+import android.app.Service;
 import android.content.Intent;
+import android.os.IBinder;
 
-import androidx.annotation.NonNull;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.work.ForegroundInfo;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
 
-import org.jetbrains.annotations.NotNull;
-
-public class Notifier extends Worker {
-    private Context cont;
-    public Notifier(@NonNull @NotNull Context context, @NonNull @NotNull WorkerParameters workerParams) {
-        super(context, workerParams);
-        cont = context;
-    }
-
-    @NonNull
-    @NotNull
+public class Notifier extends Service {
     @Override
-    public Result doWork() {
-
-        Intent fullScreenIntent = new Intent(cont, CamView.class);
-        PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(cont, 0,
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Intent fullScreenIntent = new Intent(this, CamView.class);
+        PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(this, 0,
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification notification =
-                new NotificationCompat.Builder(cont, String.valueOf(R.string.channel_name))
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, String.valueOf(R.string.channel_name))
+                        .setChannelId(String.valueOf(R.string.channel_name))
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setContentTitle("Incoming call")
                         .setContentText("(919) 555-1234")
@@ -42,19 +35,24 @@ public class Notifier extends Worker {
                         // interacts with the notification. Also, if your app targets Android 10
                         // or higher, you need to request the USE_FULL_SCREEN_INTENT permission in
                         // order for the platform to invoke this notification.
-                        .setFullScreenIntent(fullScreenPendingIntent, true)
-                        .build();
-        
-        return null;
+                        .setFullScreenIntent(fullScreenPendingIntent, true);
+
+        Notification incomingCallNotification = notificationBuilder.build();
+
+        startForeground(createID(), incomingCallNotification);
+
+        return super.onStartCommand(intent, flags, startId);
     }
 
-    @NonNull
-    public ForegroundInfo sendNotification() {
+    public int createID(){
+        Date now = new Date();
+        int id = Integer.parseInt(new SimpleDateFormat("ddHHmmss",  Locale.US).format(now));
+        return id;
+    }
 
-
-
-        //Notification incomingCallNotification = notificationBuilder.build();
-
-        return new ForegroundInfo(notification);
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }

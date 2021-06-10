@@ -2,12 +2,18 @@ package com.example.smartlock;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
+
+import java.util.List;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
@@ -23,15 +29,15 @@ public class CamView extends AppCompatActivity {
         setContentView(R.layout.cam_view);
 
 
-        //Intent listenerService = new Intent(this, ReceiveNotification.class);
-        //startService(listenerService);
+        Intent listenerService = new Intent(this, ListenerService.class);
+        startService(listenerService);
 
 
 
-        //WorkRequest myWorkRequest = OneTimeWorkRequest.from(ReceiveNotification.class);
+        WorkRequest myWorkRequest = OneTimeWorkRequest.from(ListenerService.class);
         //myWorkRequest.
 
-        //WorkManager.getInstance(getApplicationContext()).enqueue(myWorkRequest);
+        WorkManager.getInstance(getApplicationContext()).enqueue(myWorkRequest);
 
         createNotificationChannel();
 
