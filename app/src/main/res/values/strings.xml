@@ -18,7 +18,16 @@
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+
+    <string name="title_activity_camview">Access Page</string>
+    <string name="configuration_category_title">Configurations</string>
+    <string name="device_name_setting_title">Device name</string>
+    <string name="device_name_setting_summary">Enter unique name for this device. If a device name was used earlier, and is no longer used in any device, reuse the same name. Do not enter same name in multiple devices simultaniously.</string>
+    <string name="configuration_category_summary">Details regarding the configurations for the lock</string>
+    <string name="lock_uuid_setting_title">UUID of lock</string>
+    <string name="lock_uuid_setting_summary">Enter the uuid of the lock, as shown in the lock setup screen.</string>
+    <string name="project_id">vocal-gist-315804</string>
 </resources>

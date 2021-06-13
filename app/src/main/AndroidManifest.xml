@@ -9,7 +9,9 @@
 
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:fullBackupOnly="false"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,14 +19,15 @@
         android:theme="@style/Theme.Smartlock">
         <activity
             android:name=".Settings"
-            android:label="@string/title_activity_settings" />
-        <activity android:name=".CamView">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="@string/title_activity_settings">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity
+            android:name=".CamView"
+            android:label= "@string/title_activity_camview"/>
         <!--
         <service android:name=".ReceiveNotification"
             android:label="MQTTListener"

@@ -2,6 +2,7 @@ package com.example.smartlock;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,24 +23,13 @@ import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 //import static com.example.smartlock.ReceiveNotification.subscribeToTopic;
 
 public class CamView extends AppCompatActivity {
+    public static Context appContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cam_view);
 
 
-        Intent listenerService = new Intent(this, ListenerService.class);
-        startService(listenerService);
-
-
-
-        WorkRequest myWorkRequest = OneTimeWorkRequest.from(ListenerService.class);
-        //myWorkRequest.
-
-        WorkManager.getInstance(getApplicationContext()).enqueue(myWorkRequest);
-
-        createNotificationChannel();
 
         Button openButton = findViewById(R.id.openButton);
         openButton.setOnClickListener(v -> {
@@ -53,17 +43,4 @@ public class CamView extends AppCompatActivity {
         ignoreButton.setOnClickListener(v -> finish());
     }
 
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        CharSequence name = getString(R.string.channel_name);
-        String description = getString(R.string.channel_description);
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel doorBellChannel = new NotificationChannel("DoorBellChannel", name, importance);
-        doorBellChannel.setDescription(description);
-        // Register the channel with the system; you can't change the importance
-        // or other notification behaviors after this
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(doorBellChannel);
-    }
 }
