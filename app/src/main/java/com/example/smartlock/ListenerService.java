@@ -26,6 +26,7 @@ import com.google.cloud.pubsub.v1.SubscriptionAdminSettings;
 import com.google.cloud.pubsub.v1.TopicAdminClient;
 import com.google.cloud.pubsub.v1.TopicAdminSettings;
 import com.google.common.collect.Lists;
+import com.google.protobuf.ByteString;
 import com.google.pubsub.v1.ProjectSubscriptionName;
 import com.google.pubsub.v1.PubsubMessage;
 import com.google.pubsub.v1.PushConfig;
@@ -44,6 +45,9 @@ import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 
 public class ListenerService extends Worker {
+    public static ByteString data;
+    public static Intent notificationIntent;
+
     public ListenerService(@NonNull @NotNull Context context, @NonNull @NotNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
@@ -107,14 +111,17 @@ public class ListenerService extends Worker {
                     System.out.println("Id: " + message.getMessageId());
                     System.out.println("Data: " + message.getData().toStringUtf8());
 
+                    data = message.getData();
+
                     Intent intent = new Intent(context, Notifier.class);
+                    notificationIntent = intent;
                     context.startService(intent);
                     // Handle incoming message, then ack the received message.
                     System.out.println("Id: " + message.getMessageId());
                     System.out.println("Data: " + message.getData().toStringUtf8());
 
                     try {
-                        Thread.sleep(6000);
+                        Thread.sleep(60000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

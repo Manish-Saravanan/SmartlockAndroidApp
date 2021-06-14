@@ -5,7 +5,7 @@
     <string name="ImageDesc">Image containing picture of person at the door.</string>
     <string name="channel_name">DoorBellChannel</string>
     <string name="channel_description">Channel through which notifications about doorbell press is delivered.</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Smartlock</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -22,7 +22,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 
-    <string name="title_activity_camview">Access Page</string>
+    <string name="title_activity_camview">Smartlock</string>
     <string name="configuration_category_title">Configurations</string>
     <string name="device_name_setting_title">Device name</string>
     <string name="device_name_setting_summary">Enter unique name for this device. If a device name was used earlier, and is no longer used in any device, reuse the same name. Do not enter same name in multiple devices simultaniously.</string>

@@ -57,9 +57,10 @@ dependencies {
     //implementation 'com.google.cloud:google-cloud-pubsub-spi:1.0.0'
     //implementation 'com.google.cloud:google-cloud-pubsub:1.113.0'
     //api enforcedPlatform('com.google.cloud:libraries-bom:20.6.0')
-    implementation "io.grpc:grpc-okhttp:1.26.0"
+    implementation "io.grpc:grpc-okhttp:1.38.0" //1.26.0
     implementation "io.grpc:grpc-protobuf:1.38.0"
     implementation "io.grpc:grpc-stub:1.38.0"
+    implementation 'androidx.biometric:biometric:1.2.0-alpha03'
 
 
 }

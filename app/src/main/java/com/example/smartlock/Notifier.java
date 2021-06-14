@@ -31,6 +31,7 @@ public class Notifier extends Service {
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //CamView.
+        Log.d(TAG, "onCreate: Notification triggered.");
         CharSequence name = getString(R.string.channel_name);
         String description = getString(R.string.channel_description);
         int importance = NotificationManager.IMPORTANCE_HIGH;

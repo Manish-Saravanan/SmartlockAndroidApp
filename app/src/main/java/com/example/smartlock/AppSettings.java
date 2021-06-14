@@ -4,16 +4,18 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
-public class Settings extends AppCompatActivity {
+public class AppSettings extends AppCompatActivity {
     public static Context appContext;
 
     @Override
@@ -27,17 +29,15 @@ public class Settings extends AppCompatActivity {
                     .commit();
         }
         appContext = this;
+        Context context = this;
 
-
-        Intent listenerService = new Intent(this, ListenerService.class);
-        startService(listenerService);
-
+        //Intent listenerService = new Intent(this, ListenerService.class);
+        //startService(listenerService);
 
 
         WorkRequest myWorkRequest = OneTimeWorkRequest.from(ListenerService.class);
-        //myWorkRequest.
-
         WorkManager.getInstance(getApplicationContext()).enqueue(myWorkRequest);
+
 
         createNotificationChannel();
     }
