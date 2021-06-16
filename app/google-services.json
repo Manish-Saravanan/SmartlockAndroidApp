@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "352289544918",
+    "project_id": "vocal-gist-315804",
+    "storage_bucket": "vocal-gist-315804.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352289544918:android:fad4e351e46956f3d10777",
+        "android_client_info": {
+          "package_name": "com.example.smartlock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352289544918-njtgjk7velhae06303ef5kmbpa9h3ejr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKSxqtkMKDs3zHlbrerPj5azaAQcV1sms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352289544918-njtgjk7velhae06303ef5kmbpa9h3ejr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

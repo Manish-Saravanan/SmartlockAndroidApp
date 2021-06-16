@@ -29,5 +29,5 @@
     <string name="configuration_category_summary">Details regarding the configurations for the lock</string>
     <string name="lock_uuid_setting_title">UUID of lock</string>
     <string name="lock_uuid_setting_summary">Enter the uuid of the lock, as shown in the lock setup screen.</string>
-    <string name="project_id">vocal-gist-315804</string>
+    <!-- <string name="project_id">vocal-gist-315804</string> -->
 </resources>

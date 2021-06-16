@@ -29,14 +29,14 @@ public class AppSettings extends AppCompatActivity {
                     .commit();
         }
         appContext = this;
-        Context context = this;
+        // Context context = this;
 
         //Intent listenerService = new Intent(this, ListenerService.class);
         //startService(listenerService);
 
 
-        WorkRequest myWorkRequest = OneTimeWorkRequest.from(ListenerService.class);
-        WorkManager.getInstance(getApplicationContext()).enqueue(myWorkRequest);
+        // WorkRequest myWorkRequest = OneTimeWorkRequest.from(ListenerService.class);
+        // WorkManager.getInstance(getApplicationContext()).enqueue(myWorkRequest);
 
 
         createNotificationChannel();
