@@ -12,7 +12,7 @@ import static android.content.ContentValues.TAG;
 public class FirebaseService extends FirebaseMessagingService {
     public void onNewToken(@NotNull String token) {
         Log.d(TAG, "onNewToken: " + token);
-        SendOpenCommand sendOpenCommand = new SendOpenCommand("lock123", getString(R.string.project_id), "us-central1", "registry-2", token);
+        SendOpenCommand sendOpenCommand = new SendOpenCommand("lock123", getString(R.string.project_id), "us-central1", "registry-2", "New token: " + token);
         sendOpenCommand.start();
     }
     public void onMessageReceived(@NotNull RemoteMessage remoteMessage) {
