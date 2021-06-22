@@ -57,7 +57,7 @@ public class CamView extends AppCompatActivity {
 
         try {
             ImageView imageView = findViewById(R.id.imageView);
-            byte[] decodedString = Base64.decode(ListenerService.data.toStringUtf8(), Base64.DEFAULT);
+            byte[] decodedString = Base64.decode(FirebaseService.data, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             imageView.setImageBitmap(decodedByte);
         } catch (RuntimeException e) {
