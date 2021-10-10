@@ -28,7 +28,12 @@
         </activity>
         <activity
             android:name=".CamView"
-            android:label= "@string/title_activity_camview"/>
+            android:label= "@string/title_activity_camview">
+            <intent-filter>
+                <action android:name="OpenCamView" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <!--
         <service android:name=".ReceiveNotification"
             android:label="MQTTListener"
